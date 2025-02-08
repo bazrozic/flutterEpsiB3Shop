@@ -32,7 +32,7 @@ class ListProductPage extends StatelessWidget {
         title: const Text('Produits'),
         actions: [
           Stack(
-            clipBehavior: Clip.none, // Permet de faire dépasser l'indicateur
+            clipBehavior: Clip.none,
             children: [
               IconButton(
                 icon: const Icon(Icons.shopping_cart),
@@ -46,18 +46,17 @@ class ListProductPage extends StatelessWidget {
                     padding: const EdgeInsets.all(2.0),
                     decoration: BoxDecoration(
                       color: Colors.red,
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     constraints: const BoxConstraints(
                       minWidth: 16,
                       minHeight: 16,
                     ),
                     child: Text(
-                      basket.items.length
-                          .toString(), // Nombre d'articles dans le panier
+                      basket.items.length.toString(),
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 10,
+                        fontSize: 8,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,

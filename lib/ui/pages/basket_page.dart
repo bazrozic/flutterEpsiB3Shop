@@ -16,7 +16,7 @@ class BasketPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.home),
-            onPressed: () => context.go("/"), // Redirige vers la page d'accueil
+            onPressed: () => context.go("/"),
           ),
         ],
       ),
@@ -33,6 +33,12 @@ class BasketPage extends StatelessWidget {
                         leading: Image.network(product.image, width: 50),
                         title: Text(product.title),
                         subtitle: Text(product.getPrice()),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            basket.removeProduct(product);
+                          },
+                        ),
                       );
                     },
                   ),
