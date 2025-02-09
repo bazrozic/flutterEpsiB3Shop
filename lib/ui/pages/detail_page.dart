@@ -10,17 +10,15 @@ import '../../bo/basket.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key, required this.idProduct});
-
   final int idProduct;
 
   Future<Product?> getProductById() async {
     final Response response =
         await get(Uri.parse("https://fakestoreapi.com/products/$idProduct"));
-
     if (response.statusCode == 200) {
       return Product.fromMap(jsonDecode(response.body));
     }
-    return null; // Si l'API renvoie une erreur, on retourne null
+    return null;
   }
 
   @override
@@ -44,7 +42,7 @@ class DetailPage extends StatelessWidget {
           );
         }
 
-        final product = snapshot.data!; // Produit récupéré avec succès
+        final product = snapshot.data!;
 
         return Scaffold(
           appBar: AppBar(

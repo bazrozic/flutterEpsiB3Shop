@@ -8,7 +8,9 @@ import 'bo/product.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
+
   final GoRouter _router = GoRouter(
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
@@ -16,23 +18,32 @@ class MyApp extends StatelessWidget {
             ListProductPage(listProducts: listProducts),
         routes: [
           GoRoute(
-            path: 'detail/:idProduct',
-            name: 'detail',
+            path: 'detail/:id',
             builder: (context, state) {
-              final idProduct =
-                  int.tryParse(state.pathParameters['idProduct'] ?? '') ?? 0;
-              return DetailPage(idProduct: idProduct);
+              final id = _parseProductId(state.pathParameters['id']);
+              return id != null ? DetailPage(idProduct: id) : _errorPage();
             },
           ),
         ],
       ),
       GoRoute(
         path: '/basket',
-        name: 'basket',
         builder: (context, state) => BasketPage(),
       ),
     ],
   );
+
+  static int? _parseProductId(String? id) {
+    if (id == null || id.isEmpty) return null;
+    return int.tryParse(id);
+  }
+
+  static Widget _errorPage() {
+    return const Scaffold(
+      body: Center(
+          child: Text("Produit introuvable", style: TextStyle(fontSize: 18))),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
